@@ -29,6 +29,20 @@ export const apiSlice = createApi({
 				body: data,
 			}),
 		}),
+		signUpVerifiedOtp: builder.mutation({
+			query: ({ data }) => ({
+				url: `/user/signup-verify-otp`,
+				method: 'POST',
+				body: data,
+			}),
+		}),
+		signUpResendOtp: builder.mutation({
+			query: ({ data }) => ({
+				url: `/user/signup-resend-otp`,
+				method: 'POST',
+				body: data,
+			}),
+		}),
 		verifiedOtp: builder.mutation({
 			query: ({ data }) => ({
 				url: `/user/verified-otp`,
@@ -102,6 +116,20 @@ export const apiSlice = createApi({
 
 				return {
 					url: `/markets${queryParams ? `?${queryParams}` : ''}`,
+				};
+			},
+		}),
+		getAllNews: builder.query({
+			query: (searchInfo) => {
+				let queryParams = '';
+
+
+				if (searchInfo?.PAPER_TYPE) {
+					queryParams += `${queryParams ? '&' : ''}PAPER_TYPE=${searchInfo.PAPER_TYPE}`;
+				}
+
+				return {
+					url: `markets/news${queryParams ? `?${queryParams}` : ''}`,
 				};
 			},
 		}),
@@ -738,6 +766,12 @@ export const apiSlice = createApi({
 			}),
 		}),
 
+		getNewsVideos: builder.query({
+			query: () => ({
+				url: `/markets/news-videos`,
+			}),
+		}),
+
 
 		
 
@@ -747,6 +781,8 @@ export const apiSlice = createApi({
 
 export const {
 	useCreateUserMutation,
+	useSignUpVerifiedOtpMutation,
+	useSignUpResendOtpMutation,
 	useVerifiedOtpMutation,
 	useResendOtpMutation,
 	useLoginMutation,
@@ -809,5 +845,7 @@ export const {
 	useGetSpecialNotificationQuery,
 	useVerifiyThematicInvestManualNIDMutation,
 	useThematicManualNomineeNIDMutation,
-	useGetUserVouchersQuery
+	useGetUserVouchersQuery,
+	useGetAllNewsQuery,
+	useGetNewsVideosQuery
 } = apiSlice;
