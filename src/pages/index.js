@@ -9,6 +9,7 @@ import edge from '../assets/images/Edge-Asset-Management-logo.svg';
 import midway from '../assets/images/Midway-Securities.svg';
 /* import HeroImage from '../assets/images/hero_image.svg'; */
 /* import landingImage1 from '../assets/images/landing-page-image-1.svg'; */
+import Choose from '@/components/UI/Choose';
 import News from '@/components/UI/News';
 import NewsVideo from '@/components/UI/NewsVideo';
 import Link from 'next/link';
@@ -20,6 +21,7 @@ import landingImage1 from '../assets/images/landing-page-image-1.png';
 import btnMarketData from '../assets/images/market-data-btn-icon.svg';
 import rightArrow from '../assets/images/right-arrow.svg';
 import santa from '../assets/images/shanta-logo-jomma-online.svg';
+import TradingTuesday from '@/components/UI/TradingTuesday';
 
 const LandingPage = () => {
 	const router = useRouter();
@@ -172,10 +174,13 @@ const LandingPage = () => {
 					</Link>
 				</div>
 
-				<div className="row">
-					<div className="col-lg-4 text-center">sdjhfjsdf</div>
-					<div className="col-lg-4 text-center">sdjhfjsdf</div>
-					<div className="col-lg-4 text-center">sdjhfjsdf</div>
+				<Choose />
+			</div>
+
+			<div className=" news-videos-background">
+				<div className="container">
+					<h1 className="text-center video-section-header">Trading Tuesdays</h1>
+					<TradingTuesday />
 				</div>
 			</div>
 

@@ -1389,4 +1389,35 @@ input.custom-otp-input[type='number'] {
 		font-size: 16px;
 		padding: 12px 32px;
 	}
+
+	.dropdown-custom select {
+		font-size: 14px;
+	}
+}
+
+/* Slick Slider */
+.slick-arrow {
+	display: none !important;
+}
+
+:focus-visible {
+	outline: -webkit-focus-ring-color auto 0px !important;
+}
+.slick-dots {
+	display: none !important;
+}
+
+
+.dropdown-custom select {
+	width: 100%;
+	background-color: transparent; 
+	border: 1px solid #fff;
+	color: #000;
+	border: 1px solid #000;
+}
+
+.custom-form-selector:focus {
+	border-color: #000 !important;
+	outline: 0;
+	box-shadow: none !important;
 }
