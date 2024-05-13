@@ -1,31 +1,27 @@
 import RootLayout from '@/components/Layouts/RootLayout';
-import ButtonSecondary from '@/components/UI/ButtonSecondary';
 import InvestCalculator from '@/components/UI/InvestCalculator';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import brac from '../assets/images/BRAC_EPL_Investments_Ltd-Landing.svg';
-import edge from '../assets/images/Edge-Asset-Management-logo.svg';
-import midway from '../assets/images/Midway-Securities.svg';
 /* import HeroImage from '../assets/images/hero_image.svg'; */
 /* import landingImage1 from '../assets/images/landing-page-image-1.svg'; */
+import BankInterestRate from '@/components/UI/BankInterestRate';
 import Choose from '@/components/UI/Choose';
 import News from '@/components/UI/News';
 import NewsVideo from '@/components/UI/NewsVideo';
+import Partner from '@/components/UI/Partner';
+import Subscription from '@/components/UI/Subscription';
+import TradingTuesday from '@/components/UI/TradingTuesday';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import landingGif from '../assets/images/Select Stocks, Investment Themes, Mutual Funds & Bonds You want to Invest in.gif';
-import btnInvestIcon from '../assets/images/investing-btn-icon.svg';
-import landingDummy from '../assets/images/landing-page-choose-us.svg';
-import landingImage1 from '../assets/images/landing-page-image-1.png';
-import btnMarketData from '../assets/images/market-data-btn-icon.svg';
 import rightArrow from '../assets/images/right-arrow.svg';
-import santa from '../assets/images/shanta-logo-jomma-online.svg';
-import TradingTuesday from '@/components/UI/TradingTuesday';
+import ButtonSecondary from '@/components/UI/ButtonSecondary';
+import ButtonPrimary from '@/components/UI/ButtonPrimary';
 
 const LandingPage = () => {
 	const router = useRouter();
 	const [isMobileView, setIsMobileView] = useState(false);
+	const [mobileNumber, setMobileNumber] = useState('');
 
 	useEffect(() => {
 		function handleResize() {
@@ -50,6 +46,14 @@ const LandingPage = () => {
 	const handleGoMarketPage = () => {
 		router.push(`${process.env.NEXT_PUBLIC_MARKET_URL}`);
 	};
+	const handleMobileNumber = (event) => {
+		const inputMobileNumber = event.target.value.replace(/[^0-9.]/g, '');
+		setMobileNumber(inputMobileNumber);
+	};
+
+	const handleStoreNumberMixPanel = () =>{
+		console.log(mobileNumber)
+	}
 
 	return (
 		<>
@@ -186,158 +190,77 @@ const LandingPage = () => {
 
 			<InvestCalculator />
 
-			<section className="choose-us-section container mb-5 mt-lg-4 mt-3">
-				<p className="choose-us-section-title text-center mb-4">
-					Why Choose Us
-				</p>
+			{/* TODO: google ads */}
 
-				<div className="row gy-4 mb-4">
-					<div className="col-lg-6 col-md-6 col-sm-12 col-12 landing-page-image-area">
-						<Image
-							src={landingImage1}
-							alt="Jomma Investment Hompage"
-							layout="responsive"
-							className="landing-page-image"
-						/>
-					</div>
-					<div className="col-lg-6 col-md-6 col-sm-12 col-12 text-end d-flex justify-content-end align-items-center">
-						<div>
-							<h2 className="choose-us-subTitle">Online BO Account Opening</h2>
-							<p className="mb-0 choose-us-info choose-us-info-area">
-								Open a BO account with Jomma’s affiliated broker from the
-								comfort of your home.
-							</p>
-							<p className="choose-us-condition">
-								No paperwork required, no visits to the Broker!
-							</p>
-						</div>
-					</div>
-				</div>
+			<Subscription />
 
-				<div className="row gy-4 mb-4">
-					<div className="col-lg-6 col-md-6 col-sm-12 col-12 d-flex justify-content-start align-items-center choose-order1">
-						<div>
-							<h2 className="choose-us-subTitle">3 Easy Steps to Invest</h2>
-							<li className="mb-0 choose-us-info">
-								Select Stocks, Investment Themes, Mutual Funds or Bonds
-							</li>
-							<li className="mb-0 choose-us-info">Enter Investment Amount</li>
-							<li className="mb-0 choose-us-info mb-3">Confirm Order</li>
-							<ButtonSecondary
-								onClick={handleGetStart}
-								size={!isMobileView ? 'custom-small' : 'custom-medium'}
-							>
-								<div className="d-flex justify-content-center align-items-center">
-									<Image
-										src={btnInvestIcon}
-										alt="jomma-invest-image-icon"
-										className="me-1"
-									/>
-									Start Investing
-								</div>
-							</ButtonSecondary>
-						</div>
-					</div>
+			<div className="container mt-5">
+				<h1 className="text-center video-section-header">
+					Compare Interest Rate
+				</h1>
 
-					<div className="col-lg-6 col-md-6 col-sm-12 col-12 choose-order2">
-						<Image
-							src={landingGif}
-							alt="jomma-why-choose-us-icon"
-							layout="responsive"
-						/>
-					</div>
-				</div>
+				<BankInterestRate />
+			</div>
+			<div className="container mt-5">
+				<h1 className="text-center video-section-header">Jomma Partners</h1>
 
-				<div className="row gy-4 mb-4">
-					<div className="col-lg-7 col-md-7 col-sm-12 col-12">
-						<Image
-							src={landingDummy}
-							alt="jomma-landing-page-icon"
-							layout="responsive"
-						/>
-					</div>
-					<div className="col-lg-5 col-md-5 col-sm-12 col-12 text-end d-flex justify-content-end align-items-center">
-						<div>
-							<h2 className="choose-us-subTitle">Daily Market Information</h2>
-							<p className="mb-0 choose-us-info mb-3 choose-us-info-area">
-								Daily market information and price alerts delivered to you.
-							</p>
-							<ButtonSecondary
-								onClick={handleGoMarketPage}
-								size={!isMobileView ? 'custom-small' : 'custom-medium'}
-							>
-								<div className="d-flex justify-content-center align-items-center">
-									<Image
-										src={btnMarketData}
-										alt="jomma-market-information-icon"
-										className="me-1"
-									/>
-									See Market Data
-								</div>
-							</ButtonSecondary>
-						</div>
-					</div>
-				</div>
-			</section>
+				<Partner />
+			</div>
 
-			<section className="partner-section">
-				<div className="container py-4">
-					<p className="choose-us-section-title text-center mb-3 mt-0 mb-lg-5">
-						Our Partners
+			<div
+				className={isMobileView ? 'container' : ' '}
+				style={{ marginTop: '4rem' }}
+			>
+				<div
+					className="container news-videos-background"
+					style={{ borderRadius: '4px' }}
+				>
+					<h1 className="text-center video-section-header">
+						Interested to Learn More About Jomma?
+					</h1>
+					<p className="text-center contact-text">
+						Share your contact number, we will contact you soon.
 					</p>
 
-					<div className="row g-3 g-lg-5 g-md-4 mb-3">
-						<div className="col-lg-3 col-md-3 col-sm-6 col-6 h-100 mt-4">
-							<div className="partner">
-								<Image
-									src={midway}
-									alt="Midway Securities: Jomma Partner"
-									className="partnerimage"
-								/>
-								<h2 className="mb-0 text-center partner-name">
-									Midway Securities
-								</h2>
-							</div>
-						</div>
-						<div className="col-lg-3 col-md-3 col-sm-6 col-6 h-100 mt-4">
-							<div className="partner">
-								<Image
-									src={brac}
-									alt="BRAC EPL Investments Limited: Jomma Partner"
-									className="partnerimage"
-								/>
-								<h2 className="mb-0 text-center partner-name">
-									Brac EPL Investments
-								</h2>
-							</div>
-						</div>
-						<div className="col-lg-3 col-md-3 col-sm-6 col-6 h-100 mt-4">
-							<div className="partner">
-								<Image
-									src={edge}
-									alt="Edge Asset Management: Jomma Partner"
-									className="partnerimage"
-								/>
-								<h2 className="mb-0 text-center partner-name">
-									Edge Asset Management
-								</h2>
-							</div>
-						</div>
-						<div className="col-lg-3 col-md-3 col-sm-6 col-6 h-100 mt-4">
-							<div className="partner">
-								<Image
-									src={santa}
-									alt="Shanta Asset Management: Jomma Partner"
-									className="partnerimage"
-								/>
-								<h2 className="mb-0 text-center partner-name">
-									Shanta Asset Management
-								</h2>
-							</div>
-						</div>
+					<div className="mobile-number-area">
+						<input
+							type="text"
+							placeholder="Your Phone Number"
+							className={` mobile-number-input text-center`}
+							value={mobileNumber}
+							onChange={handleMobileNumber}
+						/>
+					</div>
+
+					<div className='d-flex justify-content-center mt-4'>
+					<ButtonPrimary
+                        onClick={handleStoreNumberMixPanel}
+                        size= {isMobileView ? 'custom-medium' : 'custom-small'}
+                      >
+                        Share
+                      </ButtonPrimary>
 					</div>
 				</div>
-			</section>
+			</div>
+			{/* TODO: google ads */}
+			<div
+				className='container mt-5'
+			>
+				
+					<h1 className="text-center video-section-header">
+					Help Center
+					</h1>
+					<div className="d-flex justify-content-center mb-4">
+					<Link
+						href={process.env.NEXT_PUBLIC_SIGNUP_UR}
+						className="link-help-center mt-lg-2"
+					>
+						Go To Help Center
+					</Link>
+				</div>
+
+					
+			</div>
 		</>
 	);
 };

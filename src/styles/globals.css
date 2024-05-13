@@ -817,7 +817,21 @@ input.custom-otp-input[type='number'] {
 	font-weight: bold;
 }
 
-/* Dashboard product value table */
+/*  table */
+.custom-stripe > tbody > tr:nth-child(2n) > td,
+.custom-stripe > tbody > tr:nth-child(2n) > th {
+	background-color: #e1f3f3 !important;
+}
+
+.custom-stripe > tbody > tr:nth-of-type(odd) {
+	--bs-table-accent-bg: #fff !important; /* Change background color to white */
+	color: var(--bs-table-striped-color);
+}
+
+table.custom-stripe tr {
+	border: transparent;
+}
+
 
 .table-header {
 	vertical-align: middle;
@@ -992,9 +1006,13 @@ input.custom-otp-input[type='number'] {
 	text-align: center;
 	padding: 12px 16px;
 	color: #fff;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 400;
 }
+
+  .ProductTableDatavalue {
+	font-size: 14px;
+  }
 
 .table-header-width {
 	width: 200px;
@@ -1042,10 +1060,18 @@ input.custom-otp-input[type='number'] {
 }
 
 .table-tr-padding {
-	padding: 16px !important;
+	padding: 16px 8px !important;
+}
+.bank-table-image{
+	max-width: 49px;
+	max-height: 49px;
 }
 
 @media only screen and (max-width: 576px) {
+	.bank-table-image{
+		max-width: 20px;
+		max-height: 20px;
+	}
 	.custom-datepicker-title {
 		font-size: 14px;
 		margin-bottom: 4px;
@@ -1062,7 +1088,7 @@ input.custom-otp-input[type='number'] {
 	.table-header-history {
 		padding: 6px 2px !important;
 		color: #fff;
-		font-size: 14px;
+		font-size: 13px;
 	}
 
 	.table-tr-padding {
@@ -1072,10 +1098,9 @@ input.custom-otp-input[type='number'] {
 		min-width: 100px !important;
 	}
 
-	.profile-value-td {
-		vertical-align: middle;
-		font-size: 14px;
-	}
+	.ProductTableDatavalue {
+		font-size: 12px;
+	  }
 	.transection-status-success {
 		font-size: 12px;
 		border-radius: 30px;
@@ -1375,7 +1400,17 @@ input.custom-otp-input[type='number'] {
 	background: #e2f9f7;
 	padding: 16px 48px;
 }
-.link-signup:hover {
+.link-help-center {
+	color: #2c7c7a;
+	font-size: 16px;
+	font-weight: 400;
+	text-decoration: none;
+	border-radius: 100px;
+	background: #e2f9f7;
+	padding: 12px 28px;
+}
+.link-signup:hover,
+.link-help-center:hover {
 	color: #2c7c7a;
 }
 
@@ -1388,6 +1423,10 @@ input.custom-otp-input[type='number'] {
 	.link-signup {
 		font-size: 16px;
 		padding: 12px 32px;
+	}
+	.link-help-center  {
+		font-size: 14px;
+		padding: 8px 20px;
 	}
 
 	.dropdown-custom select {
@@ -1407,10 +1446,9 @@ input.custom-otp-input[type='number'] {
 	display: none !important;
 }
 
-
 .dropdown-custom select {
 	width: 100%;
-	background-color: transparent; 
+	background-color: transparent;
 	border: 1px solid #fff;
 	color: #000;
 	border: 1px solid #000;
@@ -1421,3 +1459,227 @@ input.custom-otp-input[type='number'] {
 	outline: 0;
 	box-shadow: none !important;
 }
+
+/* Subscription Area */
+.subscription-area {
+	background-color: #fde3d8;
+	padding: 48px !important;
+	border-radius: 4px;
+}
+
+.subscription-info-area h1 {
+	font-size: 36px;
+	font-weight: 400;
+	margin-bottom: 16px;
+}
+.subscription-info-area p {
+	font-size: 20px;
+	font-weight: 400;
+	margin-bottom: 38px;
+}
+.subscription-info-area a {
+	text-decoration: none;
+	padding: 12px 28px;
+	border-radius: 100px;
+	background-color: #f3743e;
+	color: #000;
+	&:hover {
+		color: #000;
+	}
+}
+
+@media only screen and (max-width: 576px) {
+	.subscription-area {
+		padding: 24px 18px !important;
+	}
+
+	.subscription-info-area h1 {
+		font-size: 20px;
+		font-weight: 500;
+		margin-bottom: 8px;
+	}
+	.subscription-info-area p {
+		font-size: 14px;
+		font-weight: 400;
+		margin-bottom: 24px;
+	}
+	.subscription-info-area a {
+		padding: 6px 20px;
+		font-size: 14px;
+	}
+}
+
+/* Custom navbar */
+.new-nav-pills .nav-item {
+	flex: 1;
+}
+.nav-item .game-new-nav-item {
+	flex: 1 !important;
+}
+.new-nav-pills {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.nav-link .new-nav-link {
+	width: 100%;
+	text-align: center;
+}
+
+.nav-pills .new-nav-link.active {
+	border-radius: 100px !important;
+	background: linear-gradient(
+		329deg,
+		#2c7c7a 4.56%,
+		rgba(65, 181, 181, 0.75) 96.52%
+	) !important;
+	color: #000;
+}
+
+.nav-pills .new-nav-link {
+	color: #000;
+
+	&:hover {
+		color: #000;
+	}
+}
+.new-nav-link {
+	width: 100%;
+	text-align: center;
+}
+
+.leaderboard-tabpen-title {
+	font-size: 16px;
+	font-weight: 600;
+}
+
+@media (max-width: 768px) {
+	.earning-area {
+		width: 100%;
+	}
+	.game-new-nav-item {
+		flex-basis: auto;
+	}
+	.game-new-nav-area {
+		max-width: 100%;
+	}
+	.leaderboard-tabpen-title {
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.leaderboard-tabpen-title {
+		font-size: 14px;
+		font-weight: 500;
+	}
+}
+
+/* pagination */
+/* Pagination  */
+.active > .page-link,
+.page-link.active {
+	background-color: #2c7c7a !important;
+	border-color: transparent !important;
+	border-radius: 100% !important;
+	padding: 6px 10px !important;
+	margin: 0 2px !important;
+	transition: none !important;
+	color: #fff !important;
+}
+.page-link:focus {
+	outline: 0 !important;
+	box-shadow: none !important;
+}
+.page-link:hover {
+	border: none !important;
+	/* background-color: transparent !important; */
+	color: #000 !important;
+	font-weight: 600 !important;
+}
+.page-link {
+	border: none !important;
+	color: #000 !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	padding: 6px 8px !important;
+	margin: 0 6px !important;
+	border-radius: 100% !important;
+	background-color: transparent !important;
+	/* transition: none; */
+}
+
+.disabled > .page-link,
+.page-link.disabled {
+	background-color: transparent !important;
+}
+
+.page-link[aria-label='Next page']:focus {
+	background-color: transparent !important;
+}
+.page-link[aria-label='Previous page']:focus {
+	background-color: transparent !important;
+}
+.page-link[aria-label='Next page']:hover {
+	background-color: transparent !important;
+}
+.page-link[aria-label='Previous page']:hover {
+	background-color: transparent !important;
+}
+
+@media (max-width: 768px) {
+	.page-link {
+		font-size: 12px !important;
+	}
+}
+
+/* partner */
+
+.partner-marquee-section{
+	border: 1px solid #E8E8E9;
+	border-radius: 4px;
+	padding: 16px;
+}
+
+
+.contact-text{
+	margin-top: 16px;
+	font-size: 20px;
+}
+
+
+.mobile-number-area {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .mobile-number-input {
+	margin-top: 16px;
+    padding: 8px 40px;
+    width: 100%;
+    font-size: 18px;
+    border: 1px solid #1E1E24;
+    border-radius: 100px;
+	background-color: transparent;
+  }
+  
+  .mobile-number-input:focus {
+    outline: none;
+    border: 1px solid #1E1E24;;
+  }
+  
+  @media only screen and (max-width: 576px) {
+	.contact-text{
+		width: 80%;
+		margin: 0 auto;
+		font-size: 16px;
+	}
+    .mobile-number-area {
+      width: 90%;
+      margin: 0 auto;
+    }
+  
+    .mobile-number-input {
+      width: 100%;
+      font-size: 20px;
+	  font-size: 14px;
+    }
+  }
