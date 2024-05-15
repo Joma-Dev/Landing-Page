@@ -10,6 +10,7 @@ import Slider from 'react-slick';
 const TradingTuesday = () => {
 	const sliderRef = useRef(null);
 	const [sliderLoaded, setSliderLoaded] = useState(false);
+	const [currentSlide, setCurrentSlide] = useState(0);
 	const [isMobileView, setIsMobileView] = useState(false);
 	const [input, setInput] = useState('');
 
@@ -71,6 +72,9 @@ const TradingTuesday = () => {
 				},
 			},
 		],
+		afterChange: (current) => {
+			setCurrentSlide(current);
+		}
 	};
 
 	const handleChange = (value) => {
@@ -161,18 +165,21 @@ const TradingTuesday = () => {
 
 			<div className="container px-0 py-3 pb-lg-5">
 				<div className="slider-container position-relative">
-					<Image
-						src={previous}
-						alt="previous"
-						className="position-absolute start-0 top-50 start-0 translate-middle show-logo-pc"
-						onClick={() => sliderRef.current.slickPrev()}
-						style={{
-							cursor: 'pointer',
-							zIndex: 1,
-							boxShadow: '10px 10px 10px 0px rgba(44, 124, 122, 0.12)',
-							borderRadius: '50%',
-						}}
-					/>
+				{isMobileView ? (
+						<Image
+							src={previous}
+							alt="previous"
+							className="position-absolute start-0 top-50 start-0 translate-middle show-logo-pc"
+							onClick={() => sliderRef.current.slickPrev()}
+							style={{
+								cursor: 'pointer',
+								zIndex: 1,
+								boxShadow: '10px 10px 10px 0px rgba(44, 124, 122, 0.12)',
+								borderRadius: '50%',
+								display: currentSlide === 0 ? 'none' : 'block',
+							}}
+						/>
+					) : null}
 					<Slider {...settings} ref={sliderRef}>
                     {/* https://staging.jomma.online/newsfiles/J476.pdf */}
 						<div className="" style={{ border: 'none' }}>
@@ -232,19 +239,29 @@ const TradingTuesday = () => {
 							/>
 						</div>
 					</Slider>
-					<Image
-						src={next}
-						alt="next"
-						className="position-absolute end-0 top-50 translate-middle-y show-logo-pc"
-						onClick={() => sliderRef.current.slickNext()}
-						style={{
-							cursor: 'pointer',
-							zIndex: 1,
-							marginRight: '-8px',
-							boxShadow: ' -10px -10px 10px 0px rgba(44, 124, 122, 0.12)',
-							borderRadius: '50%',
-						}}
-					/>
+					{isMobileView ? (
+						<Image
+							src={next}
+							alt="next"
+							className="position-absolute end-0 top-50 translate-middle-y"
+							onClick={
+								currentSlide === 7 - settings.slidesToShow
+									? null
+									: () => sliderRef.current.slickNext()
+							}
+							style={{
+								cursor: 'pointer',
+								zIndex: 1,
+								marginRight: '-10px',
+								boxShadow: ' -10px -10px 10px 0px rgba(44, 124, 122, 0.12)',
+								borderRadius: '50%',
+								display:
+									currentSlide === 7 - settings.slidesToShow
+										? 'none'
+										: 'block',
+							}}
+						/>
+					) : null}
 				</div>
 			</div>
 		</>

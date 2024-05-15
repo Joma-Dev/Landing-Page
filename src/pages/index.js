@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 import rightArrow from '../assets/images/right-arrow.svg';
 import ButtonSecondary from '@/components/UI/ButtonSecondary';
 import ButtonPrimary from '@/components/UI/ButtonPrimary';
+import HelpCenter from '@/components/UI/HelpCenter';
 
 const LandingPage = () => {
 	const router = useRouter();
@@ -184,7 +185,7 @@ const LandingPage = () => {
 			<div className=" news-videos-background">
 				<div className="container">
 					<h1 className="text-center video-section-header">Trading Tuesdays</h1>
-					<TradingTuesday />
+					<TradingTuesday mobileNumber={isMobileView}/>
 				</div>
 			</div>
 
@@ -258,6 +259,9 @@ const LandingPage = () => {
 						Go To Help Center
 					</Link>
 				</div>
+
+
+				<HelpCenter isMobileView={isMobileView}/>
 
 					
 			</div>

@@ -832,7 +832,6 @@ table.custom-stripe tr {
 	border: transparent;
 }
 
-
 .table-header {
 	vertical-align: middle;
 	text-align: center;
@@ -1010,9 +1009,9 @@ table.custom-stripe tr {
 	font-weight: 400;
 }
 
-  .ProductTableDatavalue {
+.ProductTableDatavalue {
 	font-size: 14px;
-  }
+}
 
 .table-header-width {
 	width: 200px;
@@ -1062,13 +1061,13 @@ table.custom-stripe tr {
 .table-tr-padding {
 	padding: 16px 8px !important;
 }
-.bank-table-image{
+.bank-table-image {
 	max-width: 49px;
 	max-height: 49px;
 }
 
 @media only screen and (max-width: 576px) {
-	.bank-table-image{
+	.bank-table-image {
 		max-width: 20px;
 		max-height: 20px;
 	}
@@ -1100,7 +1099,7 @@ table.custom-stripe tr {
 
 	.ProductTableDatavalue {
 		font-size: 12px;
-	  }
+	}
 	.transection-status-success {
 		font-size: 12px;
 		border-radius: 30px;
@@ -1424,7 +1423,7 @@ table.custom-stripe tr {
 		font-size: 16px;
 		padding: 12px 32px;
 	}
-	.link-help-center  {
+	.link-help-center {
 		font-size: 14px;
 		padding: 8px 20px;
 	}
@@ -1633,53 +1632,94 @@ table.custom-stripe tr {
 
 /* partner */
 
-.partner-marquee-section{
-	border: 1px solid #E8E8E9;
+.partner-marquee-section {
+	border: 1px solid #e8e8e9;
 	border-radius: 4px;
 	padding: 16px;
 }
 
-
-.contact-text{
+.contact-text {
 	margin-top: 16px;
 	font-size: 20px;
 }
 
-
 .mobile-number-area {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  .mobile-number-input {
+	max-width: 400px;
+	margin: 0 auto;
+}
+
+.mobile-number-input {
 	margin-top: 16px;
-    padding: 8px 40px;
-    width: 100%;
-    font-size: 18px;
-    border: 1px solid #1E1E24;
-    border-radius: 100px;
+	padding: 8px 40px;
+	width: 100%;
+	font-size: 18px;
+	border: 1px solid #1e1e24;
+	border-radius: 100px;
 	background-color: transparent;
-  }
-  
-  .mobile-number-input:focus {
-    outline: none;
-    border: 1px solid #1E1E24;;
-  }
-  
-  @media only screen and (max-width: 576px) {
-	.contact-text{
+}
+
+.mobile-number-input:focus {
+	outline: none;
+	border: 1px solid #1e1e24;
+}
+
+@media only screen and (max-width: 576px) {
+	.contact-text {
 		width: 80%;
 		margin: 0 auto;
 		font-size: 16px;
 	}
-    .mobile-number-area {
-      width: 90%;
-      margin: 0 auto;
-    }
-  
-    .mobile-number-input {
-      width: 100%;
-      font-size: 20px;
-	  font-size: 14px;
-    }
-  }
+	.mobile-number-area {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.mobile-number-input {
+		width: 100%;
+		font-size: 20px;
+		font-size: 14px;
+	}
+}
+
+/* Help center card */
+.help-center-topic-section {
+	border-radius: 4px;
+	border: 1px solid #e8e8e9;
+	padding: 16px 8px;
+	margin: 0 8px 0 8px;
+	max-height: 200px;
+	cursor: pointer;
+}
+.help-center-image-area {
+	height: 45px;
+}
+.help-center-info-area {
+	height: 155px;
+}
+
+.question-title-en {
+	color: #1e1e24;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}
+.question-title-bn {
+	color: #78787c;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+
+@media only screen and (max-width: 576px) {
+	.help-center-topic-section {
+		margin-right: 8px;
+		max-height: 170px;
+	}
+	
+	.question-title-en {
+		font-size: 14px;
+	}
+	.question-title-bn {
+		font-size: 12px;
+	} 
+}
