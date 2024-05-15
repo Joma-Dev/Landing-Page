@@ -18,11 +18,12 @@ import rightArrow from '../assets/images/right-arrow.svg';
 import ButtonSecondary from '@/components/UI/ButtonSecondary';
 import ButtonPrimary from '@/components/UI/ButtonPrimary';
 import HelpCenter from '@/components/UI/HelpCenter';
+import Contact from '@/components/UI/Contact';
 
 const LandingPage = () => {
 	const router = useRouter();
 	const [isMobileView, setIsMobileView] = useState(false);
-	const [mobileNumber, setMobileNumber] = useState('');
+	
 
 	useEffect(() => {
 		function handleResize() {
@@ -47,14 +48,8 @@ const LandingPage = () => {
 	const handleGoMarketPage = () => {
 		router.push(`${process.env.NEXT_PUBLIC_MARKET_URL}`);
 	};
-	const handleMobileNumber = (event) => {
-		const inputMobileNumber = event.target.value.replace(/[^0-9.]/g, '');
-		setMobileNumber(inputMobileNumber);
-	};
 
-	const handleStoreNumberMixPanel = () =>{
-		console.log(mobileNumber)
-	}
+
 
 	return (
 		<>
@@ -208,41 +203,7 @@ const LandingPage = () => {
 				<Partner />
 			</div>
 
-			<div
-				className={isMobileView ? 'container' : ' '}
-				style={{ marginTop: '4rem' }}
-			>
-				<div
-					className="container news-videos-background"
-					style={{ borderRadius: '4px' }}
-				>
-					<h1 className="text-center video-section-header">
-						Interested to Learn More About Jomma?
-					</h1>
-					<p className="text-center contact-text">
-						Share your contact number, we will contact you soon.
-					</p>
-
-					<div className="mobile-number-area">
-						<input
-							type="text"
-							placeholder="Your Phone Number"
-							className={` mobile-number-input text-center`}
-							value={mobileNumber}
-							onChange={handleMobileNumber}
-						/>
-					</div>
-
-					<div className='d-flex justify-content-center mt-4'>
-					<ButtonPrimary
-                        onClick={handleStoreNumberMixPanel}
-                        size= {isMobileView ? 'custom-medium' : 'custom-small'}
-                      >
-                        Share
-                      </ButtonPrimary>
-					</div>
-				</div>
-			</div>
+			<Contact isMobileView={isMobileView}/>
 			{/* TODO: google ads */}
 			<div
 				className='container mt-5'
@@ -253,7 +214,7 @@ const LandingPage = () => {
 					</h1>
 					<div className="d-flex justify-content-center mb-4">
 					<Link
-						href={process.env.NEXT_PUBLIC_SIGNUP_UR}
+						href={'/information'}
 						className="link-help-center mt-lg-2"
 					>
 						Go To Help Center

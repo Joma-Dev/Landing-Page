@@ -1694,7 +1694,7 @@ table.custom-stripe tr {
 	height: 45px;
 }
 .help-center-info-area {
-	height: 155px;
+	height: 120px;
 }
 
 .question-title-en {
@@ -1709,17 +1709,65 @@ table.custom-stripe tr {
 	font-weight: 400;
 }
 
-
 @media only screen and (max-width: 576px) {
 	.help-center-topic-section {
 		margin-right: 8px;
 		max-height: 170px;
 	}
-	
+
+	.help-center-image-area {
+		height: 40px;
+	}
+	.help-center-info-area {
+		height: 120px;
+	}
+
 	.question-title-en {
 		font-size: 14px;
 	}
 	.question-title-bn {
 		font-size: 12px;
-	} 
+	}
+}
+
+/* Information page */
+.back-page-icon {
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+	font-weight: 600;
+	color: #2c7c7a;
+	text-decoration: none;
+}
+.back-page-icon:hover {
+	color: #2c7c7a;
+}
+.header-of-information {
+	padding: 40px 80px;
+	background-color: #2c7c7a;
+	text-align: center;
+	color: #fff;
+	border-radius: 4px;
+}
+.header-of-information p {
+	font-size: 20px;
+	margin-bottom: 0px;
+}
+
+@media only screen and (max-width: 576px) {
+	.BackPageIcon {
+		font-size: 16px;
+		font-weight: 500;
+	}
+	.header-of-information {
+		padding: 24px 12px;
+	}
+	.header-of-information p {
+		font-size: 16px;
+	}
+}
+
+.question-area{
+	max-width: 700px ;
+	margin: 0 auto;
 }
