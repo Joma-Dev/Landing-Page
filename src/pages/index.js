@@ -206,7 +206,7 @@ const LandingPage = () => {
 			<Contact isMobileView={isMobileView}/>
 			{/* TODO: google ads */}
 			<div
-				className='container mt-5'
+				className=' mt-5'
 			>
 				
 					<h1 className="text-center video-section-header">

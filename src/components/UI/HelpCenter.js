@@ -108,7 +108,7 @@ const HelpCenter = ({ isMobileView }) => {
 		<>
 			<h3 className="text-center mb-3">Populer Topics</h3>
 
-			<div className="container px-0 py-3 pb-lg-5">
+			<div className="container  py-3 pb-lg-5">
 				<div className="slider-container position-relative">
 					{isMobileView ? (
 						<Image

@@ -1767,7 +1767,60 @@ table.custom-stripe tr {
 	}
 }
 
-.question-area{
-	max-width: 700px ;
+.question-area {
+	max-width: 700px;
+	margin: 0 auto;
+}
+
+
+
+.video-body{
+	border-radius: 8px;
+	box-shadow: 0px 4px 4px 0px rgba(53, 154, 156, 0.25);
+	background-color: rgba(53, 154, 156, 0.1);
+	padding: 14px 14px;
+	margin-right: 20px;
+}
+.working-image-size {
+	border-radius: 8px;
+	max-width: 350px;
+	max-height: 180px;
+}
+
+.video-show-modal {
+	position: relative;
+	padding-bottom: 43%;
+	height: 0;
+	overflow: hidden;
+	border-radius: 4px;
+}
+
+.custom-modal-body {
+	padding: 0px 24px !important;
+}
+.custom-modal-header,
+.custom-modal-footer {
+	border-bottom: none !important;
+}
+.custom-modal-footer {
+	border-top: none !important;
+}
+
+@media only screen and (max-width: 576px) {
+	.video-show-modal {
+		padding-bottom: 80%;
+	}
+	.custom-modal-body {
+		padding: 0px 8px !important;
+	}
+
+	.video-body {
+		padding: 7px 7px;
+	}
+}
+
+
+.question-details-area {
+	max-width: 1000px !important;
 	margin: 0 auto;
 }

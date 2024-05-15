@@ -15,8 +15,7 @@ const Contact = ({isMobileView}) => {
 	}
     return (
         <div
-				className={isMobileView ? 'container' : ' '}
-				style={{ marginTop: '4rem' }}
+				className={isMobileView ? 'container mt-5' : 'mt-5'}
 			>
 				<div
 					className="container news-videos-background"
