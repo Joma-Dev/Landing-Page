@@ -5,6 +5,7 @@ import TradingTuesdayImg from '@/assets/images/trading_tuesday.svg';
 import { useGetNewsVideosQuery } from '@/redux/api/apiSlice';
 import styles from '@/styles/home/home.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 const TradingTuesday = () => {
@@ -183,12 +184,14 @@ const TradingTuesday = () => {
 					<Slider {...settings} ref={sliderRef}>
                     {/* https://staging.jomma.online/newsfiles/J476.pdf */}
 						<div className="" style={{ border: 'none' }}>
+							<Link href={'https://staging.jomma.online/newsfiles/J476.pdf'} target='_blank'>
 							<Image
 								src={TradingTuesdayImg}
 								alt="Jomma Trading Tuesday"
 								layout="responsive"
 								className="pe-2 pe-lg-4 pb-0" style={{cursor:'pointer'}}
 							/>
+							</Link>
 						</div>
 						<div>
 							<Image
