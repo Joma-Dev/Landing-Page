@@ -6,7 +6,6 @@ import QuestionCard from '@/components/Shared/QuestionCard';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import testI from '@/assets/images/main-focus-image.png';
 const data2 = [
 	{
 		id: 1,
@@ -108,22 +107,6 @@ const Details = () => {
 				</div>
 
 				
-
-				{/* <div class="grid-container mt-5">
-  <div class="grid-item item1">1</div>
-  <div class="grid-item item2">
-  <div className='h-50'>
-  <Image
-              src={testI}
-              alt="Featured image"
-			  layout="intrinsic"
-            />
-  </div>
-  </div>
-  <div class="grid-item item3">3</div>  
-  <div class="grid-item item4">4</div>
-  <div class="grid-item item5">5</div>
-</div> */}
 			</div>
 
 

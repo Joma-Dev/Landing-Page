@@ -1832,3 +1832,24 @@ table.custom-stripe tr {
 .details-area{
 	padding: 16px 48px;
 }
+
+
+.indexs-info{
+	border-radius: 2px;
+	padding: 8px 12px;
+	font-size: 14px;
+	min-width: 185px;
+	background-color: #D5E5E4;
+	margin-right: 12px;
+}
+
+.top-section-value-color{
+	color: #2C7C7A;
+}
+
+@media only screen and (max-width: 576px) {
+	.indexs-info{
+		font-size: 12px;
+		min-width: 135px;
+	}
+}

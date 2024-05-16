@@ -19,6 +19,7 @@ import ButtonSecondary from '@/components/UI/ButtonSecondary';
 import ButtonPrimary from '@/components/UI/ButtonPrimary';
 import HelpCenter from '@/components/UI/HelpCenter';
 import Contact from '@/components/UI/Contact';
+import TopInformation from '@/components/UI/TopInformation';
 
 const LandingPage = () => {
 	const router = useRouter();
@@ -142,6 +143,7 @@ const LandingPage = () => {
 			</noscript>
 			{/* End Google Tag Manager (noscript) */}
 
+				<TopInformation />
 			<div className={`container mb-5`}>
 				<News />
 			</div>
