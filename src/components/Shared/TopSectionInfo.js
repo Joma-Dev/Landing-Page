@@ -51,7 +51,7 @@ const TopSectionInfo = ({ isActive = 1, value=1 }) => {
 	};
 	return (
 		<>
-			<div className="py-2 pb-lg-5">
+			<div className="py-2">
 				<div className="slider-container position-relative">
 					<Slider {...settings} ref={sliderRef}>
 						<div>

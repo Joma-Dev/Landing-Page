@@ -9,7 +9,14 @@ import { Inter } from 'next/font/google'
 import { getCookies } from "cookies-next";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import mixpanel from "mixpanel-browser";
 const inter = Inter({ subsets: ['latin'] })
+
+mixpanel.init(`${process.env.NEXT_PUBLIC_PANEL_PROJECT_TOKEN}`, {
+  debug: false,
+  track_pageview: false,
+  persistence: "localStorage",
+});
 
 
 export default function App({ Component, pageProps }) {
