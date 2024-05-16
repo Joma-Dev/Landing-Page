@@ -1817,10 +1817,18 @@ table.custom-stripe tr {
 	.video-body {
 		padding: 7px 7px;
 	}
+
+	.details-area{
+		padding: 16px 0px 0px 0px !important;
+	}
 }
 
 
 .question-details-area {
 	max-width: 1000px !important;
 	margin: 0 auto;
+}
+
+.details-area{
+	padding: 16px 48px;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import { store } from "@/redux/store";
 import "@/styles/globals.css";
 import Script from "next/script";
@@ -29,6 +30,12 @@ export default function App({ Component, pageProps }) {
       <meta name="format-detection" content="telephone=no" />
       {/* Add Bootstrap CSS */}
       <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wdth,wght@100,100..900&display=swap"
+          rel="stylesheet"
+        />
       
         <main className={inter.className}>
           <Provider store={store}>
