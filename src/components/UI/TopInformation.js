@@ -1,7 +1,9 @@
 import React from 'react';
 import TopSectionInfo from '../Shared/TopSectionInfo';
+import { useGetTopListQuery } from '@/redux/api/apiSlice';
 
 const TopInformation = () => {
+    const { data, isLoading, isSuccess } = useGetTopListQuery();
     return (
         <div className='container pb-3 pb-lg-4 mt-3' style={{borderBottom:'1px solid #E8E8E9'}}>
     <ul className="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
@@ -56,7 +58,7 @@ const TopInformation = () => {
             role="tabpanel"
             aria-labelledby="pills-indexs-tab"
         >
-            <TopSectionInfo/>
+            <TopSectionInfo data={data?.data?.index}/>
         </div>
 
         <div
@@ -65,7 +67,7 @@ const TopInformation = () => {
             role="tabpanel"
             aria-labelledby="pills-top-stocks-tab"
         >
-            <TopSectionInfo/>
+            <TopSectionInfo data={data?.data?.stocks}/>
         </div>
         
         <div
@@ -74,7 +76,7 @@ const TopInformation = () => {
             role="tabpanel"
             aria-labelledby="pills-top-mutual-funds-tab"
         >
-            <TopSectionInfo/>
+            <TopSectionInfo data={data?.data?.mutual_funds}/>
         </div>
     </div>
 </div>

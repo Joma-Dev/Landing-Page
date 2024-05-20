@@ -1697,6 +1697,11 @@ table.custom-stripe tr {
 	height: 120px;
 }
 
+.help-center-img{
+	min-width: 1px !important;
+	max-height: 35px !important;
+}
+
 .question-title-en {
 	color: #1e1e24;
 	font-size: 16px;

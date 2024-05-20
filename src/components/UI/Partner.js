@@ -27,11 +27,7 @@ const data = [
 		name: 'Edge Asset Management',
 		img: Edge,
 	},
-	{
-		id: 5,
-		name: 'Shanta Asset Management',
-		img: Shanta,
-	},
+	
 ];
 
 const Partner = () => {

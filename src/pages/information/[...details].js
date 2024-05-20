@@ -3,43 +3,18 @@ import logo from '@/assets/images/jomma_logo.svg';
 import Mobilelogo from '@/assets/images/mobile_jomma_logo.svg';
 import RootLayout from '@/components/Layouts/RootLayout';
 import QuestionCard from '@/components/Shared/QuestionCard';
+import { useGetInformationDetailsQuery, useGetInformationListQuery } from '@/redux/api/apiSlice';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-const data2 = [
-	{
-		id: 1,
-		title_en: 'What does Jomma do?',
-		title_bn: 'জমার কাজ কি ?',
-	},
-	{
-		id: 2,
-		title_en: 'What is required to open a broker account online?',
-		title_bn: 'অনলাইনে ব্রোকার একাউন্ট খুলতে কি কি লাগে ? ',
-	},
-	{
-		id: 3,
-		title_en: 'What is the top 10 shares to invest?',
-		title_bn: 'বিনিয়োগের জন্য সেরা ১০ টি শেয়ারের নাম কি কি ?',
-	},
-	{
-		id: 4,
-		title_en: 'What is the benefit of investing in mutual fund?',
-		title_bn: 'মিচ্যুয়াল ফান্ডে বিনিয়োগের সুবিধা কি কি ?',
-	},
-	{
-		id: 5,
-		title_en: 'What is Brac EPL?',
-		title_bn: 'ব্র্যাক ইপিএল ওয়েলথ ম্যানেজমেন্ট কি ?',
-	},
-	{
-		id: 6,
-		title_en: 'How can I play trading game?',
-		title_bn: 'বিনিয়োগের সিমুলেশন গেইম কীভাবে খেলবো ?',
-	},
-];
+import parse from 'html-react-parser';
 
-const Details = () => {
+const Details = ({slug}) => {
+	const { data:details, isLoading:detailsLoading, error, refetch } = useGetInformationDetailsQuery(slug);
+	const { data, isLoading, isSuccess } = useGetInformationListQuery();
+
+
+
 	return (
 		<>
 			<Head>
@@ -56,19 +31,26 @@ const Details = () => {
 					<p className="mb-0">Back</p>
 				</Link>
 				<div className="question-details-area mt-3 mt-md-5">
-					<Image src={logo} alt="logo-icon-jomma" className="show-logo-pc" />
+				{
+					details?.data?.INFO_IMAGE &&
+					<>
+
+					<Image src={details?.data?.INFO_IMAGE} alt="logo-icon-jomma" width={250} height={60} className="show-logo-pc" />
 					<Image
-						src={Mobilelogo}
+						src={details?.data?.INFO_IMAGE}
 						alt="Jomma Logo"
-						width={75}
-						height={14}
+						width={150}
+						height={50}
 						style={{ marginLeft: '-6px' }}
 						className="show-logo-mobile"
 					/>
+					</>
+				}
+					
 					<h1 className="video-section-header mt-2 mb-3 mb-md-4">
-						About Jomma |{' '}
+						{details?.data?.INFO_TITLE_EN} |{' '}
 						<span style={{ fontFamily: 'Noto Sans Bengali' }}>
-							জমা সম্পর্কে তথ্য
+						{details?.data?.INFO_TITLE_BN}
 						</span>
 					</h1>
 
@@ -78,31 +60,23 @@ const Details = () => {
 					></div>
 
 					<div className="details-area">
-						<p>
-							It is a long established fact that a reader will be distracted by
-							the readable content of a page when looking at its layout. The
-							point of using Lorem Ipsum is that it has a more-or-less normal
-							distribution of letters, as opposed to using Content here, content
-							here, making it look like readable English. Many desktop
-							publishing packages and web page editors now use Lorem Ipsum as
-							their default model text, and a search for lorem ipsum will
-							uncover many web sites still in their infancy.
-						</p>
+						<div>
+						{
+							details?.data?.INFO_DESC_EN && parse(details?.data?.INFO_DESC_EN)
+						}
+						
+						
+						</div>
 
-						<p style={{ fontFamily: 'Noto Sans Bengali' }}>
-							এটি একটি দীর্ঘ প্রতিষ্ঠিত সত্য যে একটি পাঠক একটি পৃষ্ঠার পাঠযোগ্য
-							বিষয়বস্তু দ্বারা বিভ্রান্ত হবে যখন এটির বিন্যাসটি দেখবে। Lorem
-							Ipsum ব্যবহার করার বিষয় হল যে এটিতে কন্টেন্ট এখানে, এখানে
-							বিষয়বস্তু ব্যবহার করার বিপরীতে অক্ষরের কম-বেশি স্বাভাবিক বন্টন
-							রয়েছে, এটিকে পঠনযোগ্য ইংরেজির মতো দেখায়। অনেক ডেস্কটপ পাবলিশিং
-							প্যাকেজ এবং ওয়েব পেজ এডিটররা এখন তাদের ডিফল্ট মডেল টেক্সট হিসেবে
-							Lorem Ipsum ব্যবহার করে এবং -এর জন্য একটি অনুসন্ধান অনেক ওয়েব
-							সাইটকে তাদের শৈশবকালে উন্মোচিত করবে
-						</p>
+						<div style={{ fontFamily: 'Noto Sans Bengali' }}>
+						{
+							details?.data?.INFO_DESC_BN && parse(details?.data?.INFO_DESC_BN)
+						}
+						</div>
 					</div>
 
 					<div className="mt-3 mt-md-5">
-						<QuestionCard topics={data2} title={'Frequently Asked Questions'} />
+						<QuestionCard topics={data?.data} topicId={2} title={'Frequently Asked Questions'} />
 					</div>
 				</div>
 
@@ -119,4 +93,14 @@ export default Details;
 
 Details.getLayout = function getLayout(page) {
 	return <RootLayout>{page}</RootLayout>;
+};
+
+export const getServerSideProps = async (context) => {
+	;
+	const { params } = context;
+	return {
+		props: {
+			slug: params?.details[0],
+		},
+	};
 };

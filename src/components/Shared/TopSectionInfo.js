@@ -1,7 +1,8 @@
+import { formatNumberWithCommasAndDecimal } from '@/utils/formatNumberWithCommasAndDecimal';
 import { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 
-const TopSectionInfo = ({ isActive = 1, value=1 }) => {
+const TopSectionInfo = ({ data }) => {
 	const sliderRef = useRef(null);
 	const [sliderLoaded, setSliderLoaded] = useState(false);
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -54,51 +55,30 @@ const TopSectionInfo = ({ isActive = 1, value=1 }) => {
 			<div className="py-2">
 				<div className="slider-container position-relative">
 					<Slider {...settings} ref={sliderRef}>
-						<div>
+					{
+						data?.map((item, index) => (
+
+							<div key={index}>
 							<div
 								className="indexs-info"
-								style={{ backgroundColor: isActive ? '#D7EAD4' : '#F7CFCF' }}
+								style={{ backgroundColor: item?.MONTH_TO_DATE === 0 ? null : item?.MONTH_TO_DATE > 0 ? '#D7EAD4' : '#F7CFCF' }}
 							>
 								<div className="d-flex justify-content-between align-items-center mb-1" style={{fontWeight:'500'}}>
-                                    <p className='mb-0'>DSEX</p>
-                                    <p className='mb-0 top-section-value-color' style={{ color: value ? '#389429' : '#D60D0D' }}>0.23%</p>
+                                    <p className='mb-0'>{item?.TRADE_CODE}</p>
+                                    <p className='mb-0 top-section-value-color' style={{ color: item?.MONTH_TO_DATE === 0 ? null : item?.MONTH_TO_DATE > 0 ? '#389429' : '#D60D0D' }}>{formatNumberWithCommasAndDecimal(item?.MONTH_TO_DATE)}%</p>
                                 </div>
 								<div className="d-flex justify-content-between align-items-center" style={{fontWeight:'400'}}>
-                                    <p className='mb-0'>1234596.78</p>
-                                    <p className='mb-0 top-section-value-color' style={{ color: value ? '#389429' : '#D60D0D' }}>+10.23</p>
+                                    <p className='mb-0'>{formatNumberWithCommasAndDecimal(item?.CURRENT_PRICE)}</p>
+									{
+										item?.DIFFERENCE_AMOUNT &&
+                                    <p className='mb-0 top-section-value-color' style={{ color: item?.DIFFERENCE_AMOUNT === 0 ? null : item?.DIFFERENCE_AMOUNT > 0 ? '#389429' : '#D60D0D' }}>{formatNumberWithCommasAndDecimal(item?.DIFFERENCE_AMOUNT)}</p>
+									}
                                 </div>
 							</div>
 						</div>
-						<div>
-							<div
-								className="indexs-info"
-								style={{ backgroundColor: isActive ? '#D7EAD4' : '#F7CFCF' }}
-							>
-								<div className="d-flex justify-content-between align-items-center mb-1" style={{fontWeight:'500'}}>
-                                    <p className='mb-0'>DSEX</p>
-                                    <p className='mb-0 top-section-value-color' style={{ color: value ? '#389429' : '#D60D0D' }}>0.23%</p>
-                                </div>
-								<div className="d-flex justify-content-between align-items-center" style={{fontWeight:'400'}}>
-                                    <p className='mb-0'>1234596.78</p>
-                                    <p className='mb-0 top-section-value-color' style={{ color: value ? '#389429' : '#D60D0D' }}>+10.23</p>
-                                </div>
-							</div>
-						</div>
-						<div>
-							<div
-								className="indexs-info"
-								style={{ backgroundColor: isActive ? '#D7EAD4' : '#F7CFCF' }}
-							>
-								<div className="d-flex justify-content-between align-items-center mb-1" style={{fontWeight:'500'}}>
-                                    <p className='mb-0'>DSEX</p>
-                                    <p className='mb-0 top-section-value-color' style={{ color: value ? '#389429' : '#D60D0D' }}>0.23%</p>
-                                </div>
-								<div className="d-flex justify-content-between align-items-center" style={{fontWeight:'400'}}>
-                                    <p className='mb-0'>1234596.78</p>
-                                    <p className='mb-0 top-section-value-color' style={{ color: value ? '#389429' : '#D60D0D' }}>+10.23</p>
-                                </div>
-							</div>
-						</div>
+						))
+					}
+						
 					</Slider>
 				</div>
 			</div>

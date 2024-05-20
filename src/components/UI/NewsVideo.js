@@ -92,48 +92,25 @@ const NewsVideo = () => {
 
 			{isMobileView ? (
 				<div className="d-flex justify-content-center align-items-center mb-5 mt-4">
-					<div>
-						<p className={styles.NewsVideosTitle}>Top 3 News</p>
+				{
+					data?.data?.map(item => (
+						<div key={item?.VIDEO_LINK}>
+						<p className={styles.NewsVideosTitle}>{item?.VIDEO_NAME}</p>
 						<div className={styles.customDiv}>
 							<iframe
 								loading="lazy"
 								className={styles.iframeStyles}
-								src={`https://www.youtube.com/embed/0G1OrcxBwtk`}
+								src={`https://www.youtube.com/embed/${item?.VIDEO_LINK}`}
 							></iframe>
 							<div
 								className={styles.NewsVideosOverlay}
-								onClick={() => handleVideoClick('0G1OrcxBwtk')}
+								onClick={() => handleVideoClick(item?.VIDEO_LINK)}
 							></div>
 						</div>
 					</div>
-					<div>
-						<p className={styles.NewsVideosTitle}>Weekly Update</p>
-						<div className={styles.customDiv}>
-							<iframe
-								loading="lazy"
-								className={styles.iframeStyles}
-								src={`https://www.youtube.com/embed/0G1OrcxBwtk`}
-							></iframe>
-							<div
-								className={styles.NewsVideosOverlay}
-								onClick={() => handleVideoClick('0G1OrcxBwtk')}
-							></div>
-						</div>
-					</div>
-					<div>
-						<p className={styles.NewsVideosTitle}>Top 3 Shares</p>
-						<div className={styles.customDiv}>
-							<iframe
-								loading="lazy"
-								className={styles.iframeStyles}
-								src={`https://www.youtube.com/embed/0G1OrcxBwtk`}
-							></iframe>
-							<div
-								className={styles.NewsVideosOverlay}
-								onClick={() => handleVideoClick('0G1OrcxBwtk')}
-							></div>
-						</div>
-					</div>
+					))
+				}
+					
 				</div>
 			) : (
 				<div className="container px-0 mt-3" style={{overflow: 'hidden'}}>

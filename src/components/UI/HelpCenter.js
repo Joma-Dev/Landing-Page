@@ -1,17 +1,18 @@
-import brac from '@/assets/images/help-brac.png';
+/* import brac from '@/assets/images/help-brac.png';
 import broker from '@/assets/images/help-broker.svg';
 import jomma from '@/assets/images/help-jomma.svg';
 import mutual from '@/assets/images/help-mutual-fund.svg';
 import stock from '@/assets/images/help-stock.svg';
-import game from '@/assets/images/help-trading-game.svg';
+import game from '@/assets/images/help-trading-game.svg'; */
 import next from '@/assets/images/trading-next.svg';
 import previous from '@/assets/images/trading-previous.svg';
+import { useGetInformationListQuery } from '@/redux/api/apiSlice';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import TopicCard from '../Shared/TopicCard';
 
-const data = [
+/* const data = [
 	{
 		id: 1,
 		image: jomma,
@@ -54,7 +55,7 @@ const data = [
 		title_bn: 'বিনিয়োগের সিমুলেশন গেইম সম্পর্কে জেনে নিন ',
 		slug: 'trading-simulation-game',
 	},
-];
+]; */
 
 const HelpCenter = ({ isMobileView }) => {
 	const sliderRef = useRef(null);
@@ -66,6 +67,8 @@ const HelpCenter = ({ isMobileView }) => {
 			setSliderLoaded(true);
 		}
 	}, [sliderRef]);
+
+	const { data, isLoading, isSuccess } = useGetInformationListQuery();
 
 	const settings = {
 		dots: false,
@@ -126,9 +129,11 @@ const HelpCenter = ({ isMobileView }) => {
 						/>
 					) : null}
 					<Slider {...settings} ref={sliderRef}>
-						{data?.map((item) => (
-							<TopicCard key={item?.id} item={item} />
-						))}
+						{data?.data
+							?.filter((item) => item.INFO_CAT_ID === 1)
+							.map((item) => (
+								<TopicCard key={item?.INFO_ID} item={item} /> 
+							))}
 					</Slider>
 					{isMobileView ? (
 						<Image
@@ -136,7 +141,7 @@ const HelpCenter = ({ isMobileView }) => {
 							alt="next"
 							className="position-absolute end-0 top-50 translate-middle-y show-logo-pc"
 							onClick={
-								currentSlide === data.length - settings.slidesToShow
+								currentSlide === data?.data?.length - settings.slidesToShow
 									? null
 									: () => sliderRef.current.slickNext()
 							}
@@ -147,7 +152,7 @@ const HelpCenter = ({ isMobileView }) => {
 								boxShadow: ' -10px -10px 10px 0px rgba(44, 124, 122, 0.12)',
 								borderRadius: '50%',
 								display:
-									currentSlide === data.length - settings.slidesToShow
+									currentSlide >= data?.data?.length - settings.slidesToShow
 										? 'none'
 										: 'block',
 							}}
