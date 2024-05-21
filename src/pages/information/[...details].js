@@ -15,6 +15,7 @@ const Details = ({slug}) => {
 
 
 
+
 	return (
 		<>
 			<Head>
@@ -23,6 +24,8 @@ const Details = ({slug}) => {
 					name="viewport"
 					content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 				/>
+				<meta name="description" content={`${details?.data?.INFO_META_DESC}`}/>
+                <meta name="keywords" content="investment marketplace, open BO account, trade stocks, buy mutual funds, market news, financial news, BRAC EPL Investments, trading game, learn stock market, Bangladesh"></meta>
 			</Head>
 
 			<div className="container mt-4">
