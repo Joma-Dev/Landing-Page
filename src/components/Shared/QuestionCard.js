@@ -6,13 +6,17 @@ const QuestionCard = ({topics, topicId, title}) => {
 	const router = useRouter()
 
 	const handleDetailsPage = (slug) =>{
+		if(topicId === 1)
 		router.push(`/information/${slug}`);
+	else
+	router.push(`/question/${slug}`);
 	}
     return (
-        <div className="question-area mt-5">
-			<h1 className="text-center video-section-header mb-0">{title}</h1>
+			<div>
+				<h1 className="text-center video-section-header mb-0 mt-5">{title}</h1>
+        <div className="question-area">
 			<div className="row gy-3 gx-1 mt-0 mt-lg-3">
-				{topics?.filter((item) => item.INFO_CAT_ID === topicId)?.map((item) => (
+				{topics?.map((item) => (
 					<div
 						className="col-lg-4 col-md-4 col-sm-6 col-6 d-flex flex-column"
 						key={item.INFO_ID} onClick={()=>handleDetailsPage(item?.INFO_SLUG)}
@@ -37,6 +41,7 @@ const QuestionCard = ({topics, topicId, title}) => {
 				))}
 			</div>
 		</div>
+			</div>
     );
 };
 

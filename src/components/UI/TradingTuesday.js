@@ -2,7 +2,7 @@ import searchIcon from '@/assets/images/search_icon.svg';
 import next from '@/assets/images/trading-next.svg';
 import previous from '@/assets/images/trading-previous.svg';
 import TradingTuesdayImg from '@/assets/images/trading_tuesday.svg';
-import { useGetNewsVideosQuery } from '@/redux/api/apiSlice';
+import { useGetNewsVideosQuery, useGetTradingTuesdayListQuery } from '@/redux/api/apiSlice';
 import styles from '@/styles/home/home.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +13,15 @@ const TradingTuesday = () => {
 	const [sliderLoaded, setSliderLoaded] = useState(false);
 	const [currentSlide, setCurrentSlide] = useState(0);
 	const [isMobileView, setIsMobileView] = useState(false);
+	const [openSearchList, setOpenSearchList] = useState(true);
 	const [input, setInput] = useState('');
+	const [results, setResults] = useState([]);
+	const [searchItem, setSearchItem] = useState([]);
+	const [searchInfo, setSearchInfo] = useState({
+		searchTerm: '',
+		sortBy: 'doc_date',
+		sortOrder: 'desc',
+	});
 
 	useEffect(() => {
 		function handleResize() {
@@ -32,7 +40,11 @@ const TradingTuesday = () => {
 		};
 	}, []);
 
-	const { data, isLoading, isSuccess } = useGetNewsVideosQuery();
+	const { data, isLoading, isSuccess,refetch } = useGetTradingTuesdayListQuery(searchInfo);
+	useEffect(() => {
+		refetch();
+		setSearchItem(data?.data?.searchTitle);
+	}, [data,refetch]);
 
 	useEffect(() => {
 		if (sliderRef.current) {
@@ -80,8 +92,34 @@ const TradingTuesday = () => {
 
 	const handleChange = (value) => {
 		setInput(value);
-		/* setOpenSearchList(true);
-		searchList(value); */
+		setOpenSearchList(true);
+		searchList(value);
+	};
+
+	const handleSelectSearchItem = (value, code) => {
+		setInput(value);
+		searchList(value);
+		
+		setSearchInfo((prevInfo) => ({
+			...prevInfo,
+			searchTerm: code.toLowerCase(),
+		}));
+		setOpenSearchList(false);
+
+		
+	};
+
+	const searchList = (value) => {
+		const filteredResults = searchItem.filter((item) => {
+			const searchValueLower = value.toLowerCase();
+			return (
+			  item &&
+			  ((item.PROD_NAME && item.PROD_NAME.toLowerCase().includes(searchValueLower)) ||
+			   (item.TRADE_CODE && item.TRADE_CODE.toLowerCase().includes(searchValueLower)))
+			);
+		  });
+		  
+		  setResults(filteredResults);
 	};
 
 	const [selectedValue, setSelectedValue] = useState('Newest');
@@ -113,7 +151,7 @@ const TradingTuesday = () => {
 										/>
 									</div>
 								</div>
-								{/* {input && openSearchList && results && results.length > 0 && (
+								{input && openSearchList && results && results.length > 0 && (
 					<div className={styles.resultsList}>
 						{results.map((result) => (
 							<div
@@ -121,14 +159,14 @@ const TradingTuesday = () => {
 								className={styles.searchResult}
 								key={result?.FIN_PROD_ID}
 								onClick={() => {
-									handleSelectSearchItem(result?.PROD_NAME);
+									handleSelectSearchItem(result?.PROD_NAME, result?.TRADE_CODE);
 								}}
 							>
 								{result?.PROD_NAME} - {result?.TRADE_CODE}
 							</div>
 						))}
 					</div>
-				)} */}
+				)}
 							</div>
 						</div>
 					</div>
@@ -182,65 +220,25 @@ const TradingTuesday = () => {
 						/>
 					) : null}
 					<Slider {...settings} ref={sliderRef}>
-                    {/* https://staging.jomma.online/newsfiles/J476.pdf */}
-						<div className="" style={{ border: 'none' }}>
-							<Link href={'https://staging.jomma.online/newsfiles/J476.pdf'} target='_blank'>
+					{
+						data?.data?.data?.map((item, index) => (
+							<div key={item?.DOC_ID} className="" style={{ border: 'none' }}>
+							<Link href={item?.DOC_LINK} target='_blank'>
 							<Image
-								src={TradingTuesdayImg}
+								src={item?.DOC_IMAGE}
 								alt="Jomma Trading Tuesday"
+								width={20}
+								height={20}
 								layout="responsive"
 								className="pe-2 pe-lg-4 pb-0" style={{cursor:'pointer'}}
 							/>
 							</Link>
 						</div>
-						<div>
-							<Image
-								src={TradingTuesdayImg}
-								alt="Jomma Trading Tuesday"
-								layout="responsive"
-								className="pe-2 pe-lg-4 pb-0" style={{cursor:'pointer'}}
-							/>
-						</div>
-						<div>
-							<Image
-								src={TradingTuesdayImg}
-								alt="Jomma Trading Tuesday"
-								layout="responsive"
-								className="pe-2 pe-lg-4 pb-0" style={{cursor:'pointer'}}
-							/>
-						</div>
-						<div>
-							<Image
-								src={TradingTuesdayImg}
-								alt="Jomma Trading Tuesday"
-								layout="responsive"
-								className="pe-2 pe-lg-4 pb-0" style={{cursor:'pointer'}}
-							/>
-						</div>
-						<div>
-							<Image
-								src={TradingTuesdayImg}
-								alt="Jomma Trading Tuesday"
-								layout="responsive"
-								className="pe-2 pe-lg-4 pb-0" style={{cursor:'pointer'}}
-							/>
-						</div>
-						<div>
-							<Image
-								src={TradingTuesdayImg}
-								alt="Jomma Trading Tuesday"
-								layout="responsive"
-								className="pe-2 pe-lg-4 pb-0" style={{cursor:'pointer'}}
-							/>
-						</div>
-						<div>
-							<Image
-								src={TradingTuesdayImg}
-								alt="Jomma Trading Tuesday"
-								layout="responsive"
-								className="pe-2 pe-lg-4 pb-0" style={{cursor:'pointer'}}
-							/>
-						</div>
+						))
+
+					}
+						
+						
 					</Slider>
 					{isMobileView ? (
 						<Image
@@ -248,7 +246,7 @@ const TradingTuesday = () => {
 							alt="next"
 							className="position-absolute end-0 top-50 translate-middle-y"
 							onClick={
-								currentSlide === 7 - settings.slidesToShow
+								currentSlide === data?.data?.data?.length - settings.slidesToShow
 									? null
 									: () => sliderRef.current.slickNext()
 							}
@@ -259,7 +257,7 @@ const TradingTuesday = () => {
 								boxShadow: ' -10px -10px 10px 0px rgba(44, 124, 122, 0.12)',
 								borderRadius: '50%',
 								display:
-									currentSlide === 7 - settings.slidesToShow
+									currentSlide >= data?.data?.data?.length - settings.slidesToShow
 										? 'none'
 										: 'block',
 							}}

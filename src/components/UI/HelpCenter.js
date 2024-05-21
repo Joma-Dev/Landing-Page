@@ -6,7 +6,7 @@ import stock from '@/assets/images/help-stock.svg';
 import game from '@/assets/images/help-trading-game.svg'; */
 import next from '@/assets/images/trading-next.svg';
 import previous from '@/assets/images/trading-previous.svg';
-import { useGetInformationListQuery } from '@/redux/api/apiSlice';
+import { useGetTopicListQuery } from '@/redux/api/apiSlice';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
@@ -68,7 +68,7 @@ const HelpCenter = ({ isMobileView }) => {
 		}
 	}, [sliderRef]);
 
-	const { data, isLoading, isSuccess } = useGetInformationListQuery();
+	const { data, isLoading, isSuccess } = useGetTopicListQuery();
 
 	const settings = {
 		dots: false,

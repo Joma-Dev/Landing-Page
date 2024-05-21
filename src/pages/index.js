@@ -192,13 +192,13 @@ const LandingPage = () => {
 
 			<Subscription />
 
-			<div className="container mt-5">
+			{/* <div className="container mt-5">
 				<h1 className="text-center video-section-header">
 					Compare Interest Rate
 				</h1>
 
 				<BankInterestRate />
-			</div>
+			</div> */}
 			<div className="container mt-5">
 				<h1 className="text-center video-section-header">Jomma Partners</h1>
 

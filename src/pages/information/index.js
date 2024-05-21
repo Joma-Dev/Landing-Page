@@ -3,7 +3,7 @@ import RootLayout from '@/components/Layouts/RootLayout';
 import QuestionCard from '@/components/Shared/QuestionCard';
 import Contact from '@/components/UI/Contact';
 import Videos from '@/components/UI/Videos';
-import { useGetInformationListQuery } from '@/redux/api/apiSlice';
+import { useGetQuestionListQuery, useGetTopicListQuery } from '@/redux/api/apiSlice';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,7 +31,8 @@ const Information = () => {
 		};
 	}, [isMobileView]); // Only re-run if isMobileView changes
 
-	const { data, isLoading, isSuccess } = useGetInformationListQuery();
+	const { data, isLoading, isSuccess } = useGetTopicListQuery();
+	const { data:question, isLoading:isQuestionLoading, isSuccess:isQuestionSuccess } = useGetQuestionListQuery('ALL');
 
 	return (
 		<>
@@ -58,7 +59,7 @@ const Information = () => {
 			</div>
 			<div className="container">
             <QuestionCard topics={data?.data} topicId={1} title={'Popular Topics'}/>
-            <QuestionCard topics={data?.data} topicId={2} title={'Frequently Asked Questions'}/>
+            <QuestionCard topics={question?.data} topicId={2} title={'Frequently Asked Questions'}/>
 			</div>
 
 

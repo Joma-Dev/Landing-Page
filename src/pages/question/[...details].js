@@ -3,15 +3,15 @@ import logo from '@/assets/images/jomma_logo.svg';
 import Mobilelogo from '@/assets/images/mobile_jomma_logo.svg';
 import RootLayout from '@/components/Layouts/RootLayout';
 import QuestionCard from '@/components/Shared/QuestionCard';
-import { useGetInformationDetailsQuery, useGetInformationListQuery } from '@/redux/api/apiSlice';
+import { useGetRemainingQuestionListQuery, useGetTopicDetailsQuery } from '@/redux/api/apiSlice';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import parse from 'html-react-parser';
 
 const Details = ({slug}) => {
-	const { data:details, isLoading:detailsLoading, error, refetch } = useGetInformationDetailsQuery(slug);
-	const { data, isLoading, isSuccess } = useGetInformationListQuery();
+	const { data:details, isLoading:detailsLoading, error, refetch } = useGetTopicDetailsQuery(slug);
+	const { data, isLoading, isSuccess } = useGetRemainingQuestionListQuery(slug);
 
 
 
@@ -75,9 +75,14 @@ const Details = ({slug}) => {
 						</div>
 					</div>
 
+{
+	data?.data?.length > 0 ? 
 					<div className="mt-3 mt-md-5">
-						<QuestionCard topics={data?.data} topicId={2} title={'Frequently Asked Questions'} />
+						<QuestionCard topics={data?.data} topicId={2} title={`More Questions ${data?.data[0]?.PARENT_INFO_TITLE}`} />
 					</div>
+					:
+					null
+}
 				</div>
 
 				

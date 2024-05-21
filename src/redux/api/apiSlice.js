@@ -97,15 +97,49 @@ export const apiSlice = createApi({
 			}),
 		}),
 
-		getInformationList: builder.query({
+		getTopicList: builder.query({
 			query: () => ({
-				url: `/markets/information-list`,
+				url: `/markets/topic-list`,
 			}),
 		}),
-		getInformationDetails: builder.query({
+		getTopicDetails: builder.query({
 			query: (slug) => ({
-				url: `/markets/information-details/${slug}`,
+				url: `/markets/topic-details/${slug}`,
 			}),
+		}),
+		getQuestionList: builder.query({
+			query: (slug) => ({
+				url: `/markets/question-list/${slug}`,
+			}),
+		}),
+		getRemainingQuestionList: builder.query({
+			query: (slug) => ({
+				url: `/markets/remaining-question-list/${slug}`,
+			}),
+		}),
+
+		getTradingTuesdayList: builder.query({
+			query: (searchInfo) => {
+				let queryParams = '';
+
+				if (searchInfo?.searchTerm) {
+					queryParams += `searchTerm=${searchInfo.searchTerm}`;
+				}
+
+
+				if (searchInfo?.sortBy) {
+					queryParams += `${queryParams ? '&' : ''}sortBy=${searchInfo.sortBy}`;
+				}
+				if (searchInfo?.sortOrder) {
+					queryParams += `${queryParams ? '&' : ''}sortOrder=${
+						searchInfo.sortOrder
+					}`;
+				}
+
+				return {
+					url: `/markets/trading-tuesday-list${queryParams ? `?${queryParams}` : ''}`,
+				};
+			},
 		}),
 	}),
 });
@@ -118,6 +152,9 @@ export const {
 	useGetUserInfoQuery,
 	useGetJommaVideosQuery,
 	useGetTopListQuery,
-	useGetInformationListQuery,
-	useGetInformationDetailsQuery
+	useGetTopicListQuery,
+	useGetTopicDetailsQuery,
+	useGetQuestionListQuery,
+	useGetRemainingQuestionListQuery,
+	useGetTradingTuesdayListQuery
 } = apiSlice;
