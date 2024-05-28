@@ -52,7 +52,7 @@ const MobileView = ({ data }) => {
     };
 
     return (
-        <div className=" pb-3 pb-lg-4 pt-3" >
+        <div className=" py-2" >
             <ul className="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
                 <li className="nav-item" role="presentation">
                     <button
@@ -99,7 +99,7 @@ const MobileView = ({ data }) => {
             </ul>
 
 
-            <div className="tab-content mt-3 mb-0 " id="pills-tabContent">
+            <div className="tab-content mt-1 mb-0 " id="pills-tabContent">
                 <div className="tab-pane fade show active" id="pills-indexs" role="tabpanel" aria-labelledby="pills-indexs-tab">
                     <div className="slider-container position-relative">
                         <Slider {...settings} ref={sliderRef}>

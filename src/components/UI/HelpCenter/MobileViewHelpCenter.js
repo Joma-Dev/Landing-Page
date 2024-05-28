@@ -10,7 +10,7 @@ import { useGetTopicListQuery } from '@/redux/api/apiSlice';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
-import TopicCard from '../Shared/TopicCard';
+import TopicCard from '../../Shared/TopicCard';
 
 /* const data = [
 	{
@@ -57,7 +57,7 @@ import TopicCard from '../Shared/TopicCard';
 	},
 ]; */
 
-const HelpCenter = ({ isMobileView }) => {
+const MobileViewHelpCenter = ({ isMobileView }) => {
 	const sliderRef = useRef(null);
 	const [sliderLoaded, setSliderLoaded] = useState(false);
 	const [currentSlide, setCurrentSlide] = useState(0);
@@ -70,98 +70,31 @@ const HelpCenter = ({ isMobileView }) => {
 
 	const { data, isLoading, isSuccess } = useGetTopicListQuery();
 
+
 	const settings = {
 		dots: false,
 		infinite: false,
 		speed: 500,
-		slidesToShow: 5,
+		slidesToShow: 2.1,
 		slidesToScroll: 1,
 		initialSlide: 0,
-		responsive: [
-			{
-				breakpoint: 1024,
-				settings: {
-					slidesToShow: 5,
-					slidesToScroll: 1,
-					infinite: true,
-					dots: true,
-				},
-			},
-			{
-				breakpoint: 600,
-				settings: {
-					slidesToShow: 3.5,
-					slidesToScroll: 1,
-					initialSlide: 2,
-				},
-			},
-			{
-				breakpoint: 480,
-				settings: {
-					slidesToShow: 2.3,
-					slidesToScroll: 1,
-				},
-			},
-		],
-		afterChange: (current) => {
-			setCurrentSlide(current);
-		},
 	};
 	return (
 		<>
-			<h3 className="text-center mb-3">Populer Topics</h3>
+			<h3 className="text-center mb-4">Populer Topics</h3>
 
-			<div className="container  py-3 pb-lg-5">
+			<div className="container">
 				<div className="slider-container position-relative">
-					{isMobileView ? (
-						<Image
-							src={previous}
-							alt="previous"
-							className="position-absolute start-0 top-50 start-0 translate-middle show-logo-pc"
-							onClick={() => sliderRef.current.slickPrev()}
-							style={{
-								cursor: 'pointer',
-								zIndex: 1,
-								boxShadow: '10px 10px 10px 0px rgba(44, 124, 122, 0.12)',
-								borderRadius: '50%',
-								display: currentSlide === 0 ? 'none' : 'block',
-							}}
-						/>
-					) : null}
+
 					<Slider {...settings} ref={sliderRef}>
-						{data?.data
-							?.filter((item) => item.INFO_CAT_ID === 1)
-							.map((item) => (
-								<TopicCard key={item?.INFO_ID} item={item} /> 
-							))}
-					</Slider>
-					{isMobileView ? (
-						<Image
-							src={next}
-							alt="next"
-							className="position-absolute end-0 top-50 translate-middle-y show-logo-pc"
-							onClick={
-								currentSlide === data?.data?.length - settings.slidesToShow
-									? null
-									: () => sliderRef.current.slickNext()
-							}
-							style={{
-								cursor: 'pointer',
-								zIndex: 1,
-								marginRight: '-28px',
-								boxShadow: ' -10px -10px 10px 0px rgba(44, 124, 122, 0.12)',
-								borderRadius: '50%',
-								display:
-									currentSlide >= data?.data?.length - settings.slidesToShow
-										? 'none'
-										: 'block',
-							}}
-						/>
-					) : null}
+                        {data?.data?.filter(item => item.INFO_CAT_ID === 1).map(item => (
+                            <TopicCard key={item?.INFO_ID} item={item} />
+                        ))}
+                    </Slider>
 				</div>
 			</div>
 		</>
 	);
 };
 
-export default HelpCenter;
+export default MobileViewHelpCenter;

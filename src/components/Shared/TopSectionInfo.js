@@ -18,11 +18,10 @@ const TopSectionInfo = ({ item }) => {
 				>
 					<div
 						className="d-flex justify-content-between align-items-center mb-1"
-						style={{ fontWeight: '500' }}
 					>
-						<p className="mb-0">{item?.TRADE_CODE}</p>
+						<p className="mb-0 tread-code">{item?.TRADE_CODE}</p>
 						<p
-							className="mb-0 top-section-value-color"
+							className="mb-0 top-section-value-color tread-code"
 							style={{
 								color:
 									item?.MONTH_TO_DATE === 0
@@ -37,7 +36,6 @@ const TopSectionInfo = ({ item }) => {
 					</div>
 					<div
 						className="d-flex justify-content-between align-items-center"
-						style={{ fontWeight: '400' }}
 					>
 						<p className="mb-0">
 							{formatNumberWithCommasAndDecimal(item?.CURRENT_PRICE)}
