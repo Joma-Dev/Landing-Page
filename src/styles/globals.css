@@ -90,6 +90,9 @@
 	cursor: not-allowed;
 }
 
+.btn-bg-transparent .custom-secondary-button {
+	background-color: transparent !important;
+}
 .custom-secondary-button {
 	border-radius: 36px;
 	border: 1px solid #509290;
@@ -1340,20 +1343,21 @@ table.custom-stripe tr {
 
 .newsFilter {
 	min-width: 65px !important;
-	font-size: 14px !important;
+	font-size: 16px !important;
 	padding: 8px 16px !important;
 	border-radius: 100px !important;
 	background: transparent !important;
 	color: #2c7c7a !important;
 	text-align: center !important;
 	margin-right: 12px !important;
-	font-weight: 500 !important;
+	font-weight: 400 !important;
 	border: 1px solid #2c7c7a !important;
 }
 
 .newsFilter.active {
 	background: #2c7c7a !important;
 	color: #fff !important;
+	font-weight: 600 !important;
 }
 
 .show-mobile {
@@ -1415,7 +1419,7 @@ table.custom-stripe tr {
 
 @media only screen and (max-width: 576px) {
 	.video-section-header {
-		font-size: 24px;
+		font-size: 20px;
 		margin-bottom: 16px;
 		font-weight: 600;
 	}
@@ -1852,9 +1856,60 @@ table.custom-stripe tr {
 	color: #2C7C7A;
 }
 
+/* .top-section-background{
+	background-image: url('../assets/images/hero_image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+	height: 20vh;
+	opacity: 0.1;
+} */
+
+/* .background-section {
+    background-color: #E0F6F5;
+    background-image: url('../assets/images/transparent-image.png');
+   
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 380px; 
+	padding: 1rem 0;
+	border-radius: 4px;
+} */
+.background-section {
+    background-color: #E0F6F5;
+    background-image: url('../assets/images/mobile-transparent-image.png');
+   
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    min-height: 200px; 
+	padding: 1rem 0;
+	border-radius: 4px;
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%); 
+    color: #000;
+    text-align: center; 
+    width: 100%; 
+    background: #E0F6F5; 
+}
+
+
 @media only screen and (max-width: 576px) {
 	.indexs-info{
+		padding: 8px;
 		font-size: 12px;
 		min-width: 135px;
+		margin-right: 6px;
 	}
+	.background-section {
+		min-height: 200px; 
+	}
+	
+
 }

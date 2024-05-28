@@ -157,16 +157,29 @@
   }
   
   .ShortsCustomModal{
-    max-width: 400px !important;
+    max-width: 335px !important;
     height: 80vh !important;
       margin: 0 auto;
   }
   
   .ShortsCustomModalIframe{
-    width: 365px;
-    height: 650px;
+    width: 300px;
+    height: 540px;
     border-radius: 4px;
     margin-left: 1px;
+  }
+
+  .VideoCustomModal{
+    max-width: 850px !important;
+    height: 80vh !important;
+      margin: 0 auto;
+  }
+  
+  .VideoCustomModalIframe{
+    width: 800px;
+    height: 540px;
+    border-radius: 4px;
+    margin-left: 8px;
   }
   
   
@@ -174,6 +187,11 @@
     .ShortsCustomModalIframe{
       width: 100%;
       height: 550px;
+    }
+    .VideoCustomModalIframe{
+      width: 100%;
+      height: 250px;
+      margin-left: 2px;
     }
   }
   

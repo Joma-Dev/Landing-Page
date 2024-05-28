@@ -5,26 +5,25 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 /* import HeroImage from '../assets/images/hero_image.svg'; */
 /* import landingImage1 from '../assets/images/landing-page-image-1.svg'; */
-import BankInterestRate from '@/components/UI/BankInterestRate';
+import GoogleAd from '@/components/Shared/GoogleAds/GoogleAd';
 import Choose from '@/components/UI/Choose';
+import Contact from '@/components/UI/Contact';
+import HelpCenter from '@/components/UI/HelpCenter';
 import News from '@/components/UI/News';
 import NewsVideo from '@/components/UI/NewsVideo';
 import Partner from '@/components/UI/Partner';
 import Subscription from '@/components/UI/Subscription';
+import PcView from '@/components/UI/TopInformation/PcView';
 import TradingTuesday from '@/components/UI/TradingTuesday';
+import { useGetTopListQuery } from '@/redux/api/apiSlice';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import rightArrow from '../assets/images/right-arrow.svg';
-import ButtonSecondary from '@/components/UI/ButtonSecondary';
-import ButtonPrimary from '@/components/UI/ButtonPrimary';
-import HelpCenter from '@/components/UI/HelpCenter';
-import Contact from '@/components/UI/Contact';
-import TopInformation from '@/components/UI/TopInformation';
+import MobileView from '../components/UI/TopInformation/MobileView';
 
 const LandingPage = () => {
 	const router = useRouter();
 	const [isMobileView, setIsMobileView] = useState(false);
-	
 
 	useEffect(() => {
 		function handleResize() {
@@ -49,8 +48,7 @@ const LandingPage = () => {
 	const handleGoMarketPage = () => {
 		router.push(`${process.env.NEXT_PUBLIC_MARKET_URL}`);
 	};
-
-
+	const { data, isLoading, isSuccess } = useGetTopListQuery();
 
 	return (
 		<>
@@ -143,17 +141,33 @@ const LandingPage = () => {
 			</noscript>
 			{/* End Google Tag Manager (noscript) */}
 
-				<TopInformation />
+			<div
+				class="container"
+				style={{ backgroundColor: '#E0F6F5', borderRadius: '4px' }}
+			>
+				<div class="background-section ">
+					<div class="overlay-content">
+						{isMobileView ? <PcView data={data} /> : <MobileView data={data} />}
+					</div>
+				</div>
+			</div>
+
+ 
 			<div className={`container mb-5`}>
+				<h2 className="text-center video-section-header mt-3">
+					News Highlights Today
+				</h2>
 				<News />
 			</div>
+			{/* Google Ads */}
+			<GoogleAd slotID={process.env.NEXT_PUBLIC_GOOGLE_ADS_SLOT_ID_SQUARE} />
 			<div className={isMobileView ? 'container' : ''}>
 				<div
 					className="container news-videos-background"
 					style={{ borderRadius: '4px' }}
 				>
 					<h1 className="text-center video-section-header">
-						Videos Picked For You
+						Finance Videos Picked For You
 					</h1>
 					<NewsVideo />
 				</div>
@@ -166,7 +180,7 @@ const LandingPage = () => {
 				</h1>
 				<div className="d-flex justify-content-center mb-4">
 					<Link
-						href={process.env.NEXT_PUBLIC_SIGNUP_UR}
+						href={process.env.NEXT_PUBLIC_SIGNUP_URL}
 						className="link-signup mt-2"
 					>
 						Signup Today{' '}
@@ -182,7 +196,7 @@ const LandingPage = () => {
 			<div className=" news-videos-background">
 				<div className="container">
 					<h1 className="text-center video-section-header">Trading Tuesdays</h1>
-					<TradingTuesday mobileNumber={isMobileView}/>
+					<TradingTuesday mobileNumber={isMobileView} />
 				</div>
 			</div>
 
@@ -205,28 +219,17 @@ const LandingPage = () => {
 				<Partner />
 			</div>
 
-			<Contact isMobileView={isMobileView}/>
+			<Contact isMobileView={isMobileView} />
 			{/* TODO: google ads */}
-			<div
-				className=' mt-5'
-			>
-				
-					<h1 className="text-center video-section-header">
-					Help Center
-					</h1>
-					<div className="d-flex justify-content-center mb-4">
-					<Link
-						href={'/information'}
-						className="link-help-center mt-lg-2"
-					>
+			<div className=" mt-5">
+				<h1 className="text-center video-section-header">Help Center</h1>
+				<div className="d-flex justify-content-center mb-4">
+					<Link href={'/information'} className="link-help-center mt-lg-2">
 						Go To Help Center
 					</Link>
 				</div>
 
-
-				<HelpCenter isMobileView={isMobileView}/>
-
-					
+				<HelpCenter isMobileView={isMobileView} />
 			</div>
 		</>
 	);
